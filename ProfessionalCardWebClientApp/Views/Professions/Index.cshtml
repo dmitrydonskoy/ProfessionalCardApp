@@ -1,0 +1,26 @@
+﻿@model IEnumerable<ProfessionalCardWebClientApp.Models.Profession>
+
+@{
+    ViewData["Title"] = "Каталог профессий";
+}
+
+<h1>Каталог профессий</h1>
+
+<div class="container">
+    <div class="row">
+        @foreach (var profession in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">@profession.Name</h5>
+                        <p class="card-text">@profession.Description</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn btn-primary">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

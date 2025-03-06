@@ -1,0 +1,73 @@
+﻿@model ProfessionalCardWebClientApp.Models.UserProfile
+
+<h1>Личный кабинет</h1>
+
+<!-- Профиль пользователя -->
+<section>
+    <h2>Профиль пользователя</h2>
+    <form asp-action="UpdateProfile" method="post">
+        <div class="mb-3">
+            <label for="name" class="form-label">Имя</label>
+            <input type="text" id="name" name="Name" class="form-control" value="@Model.Name">
+        </div>
+        <div class="mb-3">
+            <label for="education" class="form-label">Образование</label>
+            <input type="text" id="education" name="Education" class="form-control" value="@Model.Education">
+        </div>
+        <div class="mb-3">
+            <label for="workExperience" class="form-label">Опыт работы</label>
+            <input type="text" id="workExperience" name="WorkExperience" class="form-control" value="@Model.WorkExperience">
+        </div>
+        <div class="mb-3">
+            <label for="interests" class="form-label">Интересы</label>
+            <input type="text" id="interests" name="Interests" class="form-control" value="@Model.Interests">
+        </div>
+        <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+    </form>
+</section>
+
+<!-- Сохраненные профессии и курсы -->
+<section class="mt-5">
+    <h2>Сохраненные профессии и курсы</h2>
+    <h3>Профессии</h3>
+    <ul>
+        @foreach (var profession in Model.SavedProfessions)
+        {
+            <li>@profession</li>
+        }
+    </ul>
+
+    <h3>Курсы</h3>
+    <ul>
+        @foreach (var course in Model.SavedCourses)
+        {
+            <li>@course</li>
+        }
+    </ul>
+</section>
+
+<!-- Прогресс -->
+<section class="mt-5">
+    <h2>Прогресс</h2>
+    <h3>Текущий маршрут</h3>
+    <p>@Model.CurrentRoute</p>
+
+    <h3>Завершенные этапы</h3>
+    <ul>
+        @foreach (var step in Model.CompletedSteps)
+        {
+            <li>@step</li>
+        }
+    </ul>
+</section>
+
+<!-- Рекомендации -->
+<section class="mt-5">
+    <h2>Рекомендации</h2>
+    <ul>
+        @foreach (var recommendation in Model.Recommendations)
+        {
+            <li>@recommendation</li>
+        }
+    </ul>
+</section>

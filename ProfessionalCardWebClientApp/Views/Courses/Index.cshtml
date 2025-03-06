@@ -1,0 +1,59 @@
+﻿@model IEnumerable<ProfessionalCardWebClientApp.Models.Course>
+
+@{
+    ViewData["Title"] = "Каталог курсов и мероприятий";
+}
+
+<h1>Каталог курсов и мероприятий</h1>
+
+<!-- Фильтры -->
+<form method="get" class="mb-4">
+    <div class="row">
+        <div class="col-md-3">
+            <label>Направление:</label>
+            <select name="direction" class="form-control">
+                <option value="">Все</option>
+                <option value="IT">IT</option>
+                <option value="Дизайн">Дизайн</option>
+                <option value="Инженерия">Инженерия</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label>Формат:</label>
+            <select name="format" class="form-control">
+                <option value="">Все</option>
+                <option value="Онлайн">Онлайн</option>
+                <option value="Оффлайн">Оффлайн</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label>Компетенции:</label>
+            <input type="text" name="skills" class="form-control" placeholder="Введите компетенции">
+        </div>
+        <div class="col-md-3 align-self-end">
+            <button type="submit" class="btn btn-primary">Применить</button>
+        </div>
+    </div>
+</form>
+
+<!-- Список курсов -->
+<div class="row">
+    @foreach (var course in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">@course.Name</h5>
+                    <p class="card-text">@course.Description</p>
+                    <p><strong>Направление:</strong> @course.Direction</p>
+                    <p><strong>Формат:</strong> @course.Format</p>
+                    <p><strong>Длительность:</strong> @course.Duration</p>
+                    <p><strong>Ссылка:</strong> @course.RegistrationLink</p>
+                </div>
+                <div class="card-footer">
+                    <a asp-action="Details" asp-route-id="@course.Id" class="btn btn-primary">Подробнее</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

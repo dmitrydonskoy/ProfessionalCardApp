@@ -1,0 +1,101 @@
+﻿@page
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная страница</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+    
+
+    <main class="container my-4">
+        <section class="hero text-center mb-5">
+            <h1 class="display-4">Добро пожаловать на интерактивную карту профессий</h1>
+            <p class="lead">Найдите свою профессию, подходящие курсы и постройте маршрут карьерного роста.</p>
+            <a href="/CareerPath" class="btn btn-primary btn-lg">Начать карьерный маршрут</a>
+        </section>
+
+        <section class="search mb-5">
+            <h2 class="h4">Поиск профессий и курсов</h2>
+            <form method="get" action="/Search" class="input-group">
+                <input type="text" name="query" class="form-control" placeholder="Введите профессию или навык...">
+                <button type="submit" class="btn btn-outline-secondary">Поиск</button>
+            </form>
+        </section>
+
+        <section class="popular mb-5">
+            <h2 class="h4">Популярные профессии</h2>
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Программист</h5>
+                            <p class="card-text">Специалист, создающий программное обеспечение для различных платформ.</p>
+                            <a href="/Professions/Details/1" class="btn btn-secondary">Подробнее</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Дизайнер</h5>
+                            <p class="card-text">Профессионал, разрабатывающий визуальные концепции и макеты.</p>
+                            <a href="/Professions/Details/2" class="btn btn-secondary">Подробнее</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Инженер</h5>
+                            <p class="card-text">Эксперт в области проектирования и технической разработки.</p>
+                            <a href="/Professions/Details/3" class="btn btn-secondary">Подробнее</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="popular-courses mb-5">
+            <h2 class="h4">Популярные курсы</h2>
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Основы программирования</h5>
+                            <p class="card-text">Курс для начинающих, желающих освоить базовые навыки программирования.</p>
+                            <a href="/Courses/Details/1" class="btn btn-secondary">Подробнее</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Веб-дизайн</h5>
+                            <p class="card-text">Курс по созданию пользовательских интерфейсов и веб-дизайну.</p>
+                            <a href="/Courses/Details/2" class="btn btn-secondary">Подробнее</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Инженерные системы</h5>
+                            <p class="card-text">Обучение проектированию сложных инженерных систем и конструкций.</p>
+                            <a href="/Courses/Details/3" class="btn btn-secondary">Подробнее</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+  
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
