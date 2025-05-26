@@ -1,1 +1,105 @@
-﻿
+﻿#include <iostream>
+#include <string>
+using namespace std;
+
+// Объявляем структуру Student
+struct Student {
+    string name;
+    int age;
+    float grade;
+};
+
+// Функция для вывода информации о студенте
+void printStudent(const Student& s) {
+    cout << "Имя: " << s.name << endl;
+    cout << "Возраст: " << s.age << endl;
+    cout << "Оценка: " << s.grade << endl;
+}
+
+int main() {
+    // Создаем объект структуры
+    Student s1 = {"Алексей", 19, 4.5};
+
+    // Вызываем функцию, передавая структуру по ссылке (const)
+    printStudent(s1);
+
+    return 0;
+}
+--------------------------------------------
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Структура для хранения информации о книге
+struct Book {
+    string title;
+    string author;
+    int year;
+};
+
+int main() {
+    const int SIZE = 5;
+    Book books[SIZE];
+
+    // Ввод информации о книгах
+    for (int i = 0; i < SIZE; ++i) {
+        cout << "Книга #" << i + 1 << endl;
+        cout << "Название: ";
+        getline(cin, books[i].title);
+        cout << "Автор: ";
+        getline(cin, books[i].author);
+        cout << "Год: ";
+        cin >> books[i].year;
+        cin.ignore(); // Сброс символа новой строки
+    }
+
+    // Вывод книг после 2010 года
+    cout << "\nКниги, изданные после 2010:\n";
+    for (int i = 0; i < SIZE; ++i) {
+        if (books[i].year > 2010) {
+            cout << books[i].title << " от " << books[i].author << " (" << books[i].year << ")\n";
+        }
+    }
+
+    return 0;
+}
+---------------------------------
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Структура для даты
+struct Date {
+    int day;
+    int month;
+    int year;
+};
+
+// Структура для сотрудника
+struct Employee {
+    string name;
+    Date hireDate;
+};
+
+// Функция вывода сотрудников, принятых после 2020 года
+void printRecentHires(Employee employees[], int count) {
+    for (int i = 0; i < count; ++i) {
+        if (employees[i].hireDate.year > 2020) {
+            cout << "Сотрудник: " << employees[i].name << endl;
+        }
+    }
+}
+
+int main() {
+    const int SIZE = 3;
+    Employee staff[SIZE] = {
+        {"Иванов", {12, 5, 2019}},
+        {"Петров", {1, 2, 2021}},
+        {"Сидоров", {15, 7, 2022}}
+    };
+
+    printRecentHires(staff, SIZE);
+
+    return 0;
+}
+---------------------------------------

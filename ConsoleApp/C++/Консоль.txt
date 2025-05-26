@@ -1,1 +1,122 @@
-﻿
+﻿#include <iostream>
+using namespace std;
+
+int main() {
+    int choice;
+    double a, b;
+
+    do {
+        cout << "\nМеню калькулятора:\n";
+        cout << "1. Сложение\n";
+        cout << "2. Вычитание\n";
+        cout << "3. Умножение\n";
+        cout << "4. Деление\n";
+        cout << "0. Выход\n";
+        cout << "Ваш выбор: ";
+        cin >> choice;
+
+        if (choice >= 1 && choice <= 4) {
+            cout << "Введите два числа: ";
+            cin >> a >> b;
+        }
+
+        switch (choice) {
+            case 1: cout << "Сумма: " << a + b << endl; break;
+            case 2: cout << "Разность: " << a - b << endl; break;
+            case 3: cout << "Произведение: " << a * b << endl; break;
+            case 4: 
+                if (b != 0)
+                    cout << "Частное: " << a / b << endl;
+                else
+                    cout << "Ошибка: деление на 0\n";
+                break;
+            case 0: cout << "Выход...\n"; break;
+            default: cout << "Неверный выбор!\n";
+        }
+    } while (choice != 0);
+
+    return 0;
+}
+
+------------------------------------------------------
+
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+
+int main() {
+    srand(time(0)); // Инициализация генератора случайных чисел
+    int target = rand() % 100 + 1;
+    int guess;
+    int tries = 0;
+
+    cout << "Угадайте число от 1 до 100:\n";
+
+    do {
+        cout << "Ваш вариант: ";
+        cin >> guess;
+        tries++;
+
+        if (guess < target) cout << "Больше!\n";
+        else if (guess > target) cout << "Меньше!\n";
+        else cout << "Вы угадали за " << tries << " попыток!\n";
+
+    } while (guess != target);
+
+    return 0;
+}
+
+
+----------------------------------------------------------
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+int main() {
+    vector<string> notes;
+    int choice;
+    string input;
+
+    do {
+        cout << "\n1. Добавить заметку\n";
+        cout << "2. Показать все\n";
+        cout << "3. Удалить по номеру\n";
+        cout << "0. Выход\n";
+        cout << "Выбор: ";
+        cin >> choice;
+        cin.ignore(); // очистка ввода
+
+        switch (choice) {
+            case 1:
+                cout << "Введите текст заметки: ";
+                getline(cin, input);
+                notes.push_back(input);
+                break;
+
+            case 2:
+                cout << "Заметки:\n";
+                for (size_t i = 0; i < notes.size(); ++i)
+                    cout << i + 1 << ": " << notes[i] << endl;
+                break;
+
+            case 3:
+                int index;
+                cout << "Введите номер для удаления: ";
+                cin >> index;
+                if (index >= 1 && index <= (int)notes.size()) {
+                    notes.erase(notes.begin() + index - 1);
+                    cout << "Заметка удалена.\n";
+                } else {
+                    cout << "Неверный номер.\n";
+                }
+                break;
+
+            case 0: break;
+            default: cout << "Неверный выбор.\n";
+        }
+    } while (choice != 0);
+
+    return 0;
+}

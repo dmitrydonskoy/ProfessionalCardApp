@@ -1,1 +1,135 @@
-﻿
+﻿#include <iostream>
+using namespace std;
+
+struct Node {
+    int data;
+    Node* next;
+
+    Node(int val) : data(val), next(nullptr) {}
+};
+
+class SortedSinglyLinkedList {
+private:
+    Node* head;
+
+public:
+    SortedSinglyLinkedList() : head(nullptr) {}
+
+    // Вставка с сохранением порядка
+    void insertSorted(int value) {
+        Node* newNode = new Node(value);
+
+        // 1. Пустой список или вставка в начало
+        if (!head || value < head->data) {
+            newNode->next = head;
+            head = newNode;
+            return;
+        }
+
+        // 2. Найти нужную позицию
+        Node* curr = head;
+        while (curr->next && curr->next->data < value) {
+            curr = curr->next;
+        }
+
+        // 3. Вставка
+        newNode->next = curr->next;
+        curr->next = newNode;
+    }
+
+    // Печать списка
+    void print() const {
+        Node* temp = head;
+        while (temp) {
+            cout << temp->data << " -> ";
+            temp = temp->next;
+        }
+        cout << "NULL\n";
+    }
+
+    // Очистка
+    ~SortedSinglyLinkedList() {
+        while (head) {
+            Node* next = head->next;
+            delete head;
+            head = next;
+        }
+    }
+};
+
+-------------------------------------------------
+int main() {
+    SortedSinglyLinkedList list;
+
+    list.insertSorted(5);
+    list.insertSorted(2);
+    list.insertSorted(8);
+    list.insertSorted(3);
+
+    list.print();  // Ожидаемый вывод: 2 -> 3 -> 5 -> 8 -> NULL
+
+    return 0;
+}
+
+
+-----------------------------------------
+#include <iostream>
+using namespace std;
+
+struct Student {
+    string name;
+    int grade;
+
+    Student(string n, int g) : name(n), grade(g) {}
+};
+
+struct Node {
+    Student data;
+    Node* next;
+
+    Node(Student s) : data(s), next(nullptr) {}
+};
+
+class SortedStudentList {
+private:
+    Node* head;
+
+public:
+    SortedStudentList() : head(nullptr) {}
+
+    void insertSorted(const Student& s) {
+        Node* newNode = new Node(s);
+
+        // Вставка в начало или пустой список
+        if (!head || s.grade < head->data.grade) {
+            newNode->next = head;
+            head = newNode;
+            return;
+        }
+
+        // Найти позицию для вставки
+        Node* current = head;
+        while (current->next && current->next->data.grade < s.grade) {
+            current = current->next;
+        }
+
+        newNode->next = current->next;
+        current->next = newNode;
+    }
+
+    void print() const {
+        Node* temp = head;
+        while (temp) {
+            cout << temp->data.name << " (grade: " << temp->data.grade << ")\n";
+            temp = temp->next;
+        }
+    }
+
+    ~SortedStudentList() {
+        while (head) {
+            Node* next = head->next;
+            delete head;
+            head = next;
+        }
+    }
+};

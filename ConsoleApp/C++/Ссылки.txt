@@ -1,1 +1,65 @@
-﻿
+﻿#include <iostream>
+using namespace std;
+
+// Функция прибавляет b к a по ссылке
+void add(int& a, int b) {
+    a += b;
+}
+
+int main() {
+    int x = 10;
+    int y = 5;
+
+    add(x, y); // x изменяется
+
+    cout << "Результат: " << x << endl; // Вывод: 15
+
+    return 0;
+}
+-------------------------------
+
+#include <iostream>
+using namespace std;
+
+// Меняет местами значения двух переменных по ссылке
+void swap(int& x, int& y) {
+    int temp = x;
+    x = y;
+    y = temp;
+}
+
+int main() {
+    int a = 3, b = 7;
+
+    swap(a, b);
+
+    cout << "a = " << a << ", b = " << b << endl; // a = 7, b = 3
+
+    return 0;
+}
+
+---------------------------------
+#include <iostream>
+using namespace std;
+
+// Структура прямоугольника
+struct Rectangle {
+    int width;
+    int height;
+};
+
+// Изменение размеров прямоугольника по ссылке
+void resize(Rectangle& r, int newWidth, int newHeight) {
+    r.width = newWidth;s
+    r.height = newHeight;
+}
+
+int main() {
+    Rectangle rect = {10, 5};
+
+    resize(rect, 20, 15);
+
+    cout << "Новые размеры: " << rect.width << " x " << rect.height << endl;
+
+    return 0;
+}
