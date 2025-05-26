@@ -1,0 +1,175 @@
+﻿✅ 1. Стек (Stack)
+cpp
+Копировать
+Редактировать
+#include <iostream>
+using namespace std;
+
+class Stack {
+private:
+    static const int MAX = 100;
+    int arr[MAX];
+    int top;
+
+public:
+    Stack() : top(-1) {}
+
+    void push(int value) {
+        if (top >= MAX - 1) {
+            cout << "Stack overflow\n";
+            return;
+        }
+        arr[++top] = value;
+    }
+
+    void pop() {
+        if (top < 0) {
+            cout << "Stack underflow\n";
+            return;
+        }
+        top--;
+    }
+
+    int peek() {
+        if (top < 0) return -1;
+        return arr[top];
+    }
+
+    bool isEmpty() {
+        return top < 0;
+    }
+};
+✅ 2. Очередь (Queue)
+cpp
+Копировать
+Редактировать
+class Queue {
+private:
+    static const int SIZE = 100;
+    int arr[SIZE];
+    int front, rear;
+
+public:
+    Queue() : front(0), rear(0) {}
+
+    void enqueue(int value) {
+        if ((rear + 1) % SIZE == front) {
+            cout << "Queue overflow\n";
+            return;
+        }
+        arr[rear] = value;
+        rear = (rear + 1) % SIZE;
+    }
+
+    void dequeue() {
+        if (front == rear) {
+            cout << "Queue underflow\n";
+            return;
+        }
+        front = (front + 1) % SIZE;
+    }
+
+    int peek() {
+        if (front == rear) return -1;
+        return arr[front];
+    }
+
+    bool isEmpty() {
+        return front == rear;
+    }
+};
+✅ 3. Хеш-таблица (Hash Table) — с открытой адресацией
+cpp
+Копировать
+Редактировать
+const int TABLE_SIZE = 10;
+
+class HashTable {
+private:
+    int table[TABLE_SIZE];
+    bool occupied[TABLE_SIZE];
+
+    int hash(int key) {
+        return key % TABLE_SIZE;
+    }
+
+public:
+    HashTable() {
+        for (int i = 0; i < TABLE_SIZE; i++) {
+            table[i] = -1;
+            occupied[i] = false;
+        }
+    }
+
+    void insert(int key) {
+        int h = hash(key);
+        int start = h;
+        while (occupied[h]) {
+            h = (h + 1) % TABLE_SIZE;
+            if (h == start) {
+                cout << "Table full\n";
+                return;
+            }
+        }
+        table[h] = key;
+        occupied[h] = true;
+    }
+
+    bool search(int key) {
+        int h = hash(key);
+        int start = h;
+        while (occupied[h]) {
+            if (table[h] == key) return true;
+            h = (h + 1) % TABLE_SIZE;
+            if (h == start) return false;
+        }
+        return false;
+    }
+};
+✅ 4. Множество (Set) — на основе динамического массива
+cpp
+Копировать
+Редактировать
+class MySet {
+private:
+    int* data;
+    int size;
+    int capacity;
+
+    void resize() {
+        capacity *= 2;
+        int* newData = new int[capacity];
+        for (int i = 0; i < size; ++i) newData[i] = data[i];
+        delete[] data;
+        data = newData;
+    }
+
+public:
+    MySet() {
+        size = 0;
+        capacity = 10;
+        data = new int[capacity];
+    }
+
+    ~MySet() {
+        delete[] data;
+    }
+
+    void insert(int value) {
+        if (contains(value)) return;
+        if (size >= capacity) resize();
+        data[size++] = value;
+    }
+
+    bool contains(int value) {
+        for (int i = 0; i < size; ++i)
+            if (data[i] == value) return true;
+        return false;
+    }
+
+    void print() {
+        for (int i = 0; i < size; ++i)
+            cout << data[i] << " ";
+        cout << endl;
+    }
+};
